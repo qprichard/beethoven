@@ -753,12 +753,6 @@ export function setTransactionError(error) {
   };
 }
 
-export function setTransactionHalloweenError() {
-  return {
-    state_transaction: 'halloween',
-  };
-}
-
 export function setTransaction(sessionId, selectedArticles, badge_id) {
   return (dispatch) => {
     dispatch(setTransactionRequest(sessionId, selectedArticles));
@@ -782,7 +776,7 @@ export function setTransaction(sessionId, selectedArticles, badge_id) {
     // Si l'article existe on cherche s'il est dans la commande
     if (article_id){
       for (let index = 0; index < selectedArticles.length; index++) {
-        if(selectedArticles[index][0] == article_id){
+        if(selectedArticles[index].newID == article_id){
           found = true;
         }
       }
@@ -795,9 +789,12 @@ export function setTransaction(sessionId, selectedArticles, badge_id) {
         if (result.count < 5) {
           fetch('https://kraken.picasso-utc.fr/api/perm/halloween/', {
             method: 'POST',
-            body: JSON.stringify({ article_id: article_id, login: badge_id.toString()})
+            body: JSON.stringify({ article_id: article_id, login: badge_id.toString()}),
+            headers: {
+              'Content-Type': 'application/json',
+            },
           }).then(() => {
-            dispatch(setTransactionHalloweenError());
+            dispatch(setTransactionState('halloween'));
           })
         } else {
           setUserTransaction(
