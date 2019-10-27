@@ -52,7 +52,12 @@ class Vente extends Component {
                        </div>)
         setClientState();
         setTimeout(function(){setTransactionState('listen')}, 3000)
-      }
+      } else if(state_transaction=='halloween'){
+      stateTrans = (<div class="alert ml-2 w-100 bg-danger" role="alert">
+                       Article interdit : c'est la PRISON !
+                     </div>)
+      setTimeout(function(){setTransactionState('listen')}, 3000)
+    }
     let info;
     if(info_client){
       if(info_client.error){

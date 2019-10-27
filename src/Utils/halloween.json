@@ -1,0 +1,46 @@
+{
+    "articles": [
+        {
+            "article_id": 15564,
+            "start_hour": 18,
+            "start_minute": 0,
+            "end_hour": 18,
+            "end_minute": 29
+        },
+        {
+            "article_id": 15564,
+            "start_hour": 18,
+            "start_minute": 30,
+            "end_hour": 18,
+            "end_minute": 59
+        },
+        {
+            "article_id": 15564,
+            "start_hour": 19,
+            "start_minute": 0,
+            "end_hour": 19,
+            "end_minute": 29
+        },
+        {
+            "article_id": 15564,
+            "start_hour": 19,
+            "start_minute": 30,
+            "end_hour": 19,
+            "end_minute": 59
+        },
+        {
+            "article_id": 15564,
+            "start_hour": 20,
+            "start_minute": 0,
+            "end_hour": 20,
+            "end_minute": 29
+        },
+        {
+            "article_id": 15564,
+            "start_hour": 20,
+            "start_minute": 30,
+            "end_hour": 20,
+            "end_minute": 59
+        }
+    ]
+}

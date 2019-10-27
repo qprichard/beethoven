@@ -132,6 +132,8 @@ import {
   sendLostCard,
 } from '../Utils/apiCalls.js';
 
+import halloween from '../Utils/halloween.json';
+
 // **************************************************************************
 // Gestion Menus
 // **************************************************************************
@@ -751,21 +753,83 @@ export function setTransactionError(error) {
   };
 }
 
+export function setTransactionHalloweenError() {
+  return {
+    state_transaction: 'halloween',
+  };
+}
+
 export function setTransaction(sessionId, selectedArticles, badge_id) {
   return (dispatch) => {
     dispatch(setTransactionRequest(sessionId, selectedArticles));
-    setUserTransaction(
-      sessionId,
-      badge_id,
-      selectedArticles,
-      (data) => {
-        dispatch(setTransactionSuccess(data));
-      },
-      (err) => {
-        dispatch(setTransactionError('Erreur : Transaction avortée'));
-      },
-    );
-    dispatch(deleteAllArticles(selectedArticles))
+
+    // Vérification, s'il y a un article faisant parti du json ! 
+
+    const current_date = new Date();
+    const current_hour = current_date.getHours();
+    const current_minute = current_date.getMinutes();
+    const articles = halloween.articles;
+
+    // Recherche de l'article_id correspondant à l'heure actuelle
+    let article_id = null;
+    for (let index = 0; index < articles.length; index++) {
+      if(articles[index].start_hour == current_hour && (articles[index].start_minute <= current_minute && articles[index].end_minute >= current_minute)){
+        article_id = articles[index].article_id;
+      }
+    }
+
+    let found = false;
+    // Si l'article existe on cherche s'il est dans la commande
+    if (article_id){
+      for (let index = 0; index < selectedArticles.length; index++) {
+        if(selectedArticles[index][0] == article_id){
+          found = true;
+        }
+      }
+    }
+
+    if (found) {
+      fetch('https://kraken.picasso-utc.fr/api/perms/count/halloween?article_id=' + article_id, {
+        method: 'GET'
+      }).then(res => res.json()).then((result) => {
+        if (result.count < 5) {
+          fetch('https://kraken.picasso-utc.fr/api/perm/halloween/', {
+            method: 'POST',
+            body: JSON.stringify({ article_id: article_id, login: badge_id.toString()})
+          }).then(() => {
+            dispatch(setTransactionHalloweenError());
+          })
+        } else {
+          setUserTransaction(
+            sessionId,
+            badge_id,
+            selectedArticles,
+            (data) => {
+              dispatch(setTransactionSuccess(data));
+            },
+            (err) => {
+              dispatch(setTransactionError('Erreur : Transaction avortée'));
+            },
+          );
+        }
+        dispatch(deleteAllArticles(selectedArticles))
+      })   
+    } else {
+      setUserTransaction(
+        sessionId,
+        badge_id,
+        selectedArticles,
+        (data) => {
+          dispatch(setTransactionSuccess(data));
+        },
+        (err) => {
+          dispatch(setTransactionError('Erreur : Transaction avortée'));
+        },
+      );
+      dispatch(deleteAllArticles(selectedArticles))
+    }
+
+    
   };
 }
 
