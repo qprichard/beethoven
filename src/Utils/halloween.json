@@ -9,16 +9,16 @@
         },
         {
             "article_id": 1403,
-            "start_hour": 15,
-            "start_minute": 46,
-            "end_hour": 15,
-            "end_minute": 50
+            "start_hour": 17,
+            "start_minute": 0,
+            "end_hour": 17,
+            "end_minute": 30
         },
         {
             "article_id": 13896,
-            "start_hour": 15,
+            "start_hour": 16,
             "start_minute": 51,
-            "end_hour": 15,
+            "end_hour": 16,
             "end_minute": 59
         },
         {
