@@ -1,45 +1,45 @@
 {
     "articles": [
         {
-            "article_id": 15564,
-            "start_hour": 18,
-            "start_minute": 0,
-            "end_hour": 18,
-            "end_minute": 29
+            "article_id": 1401,
+            "start_hour": 15,
+            "start_minute": 45,
+            "end_hour": 15,
+            "end_minute": 50
         },
         {
-            "article_id": 15564,
+            "article_id": 1403,
+            "start_hour": 15,
+            "start_minute": 46,
+            "end_hour": 15,
+            "end_minute": 50
+        },
+        {
+            "article_id": 13896,
+            "start_hour": 15,
+            "start_minute": 51,
+            "end_hour": 15,
+            "end_minute": 59
+        },
+        {
+            "article_id": 1401,
             "start_hour": 18,
             "start_minute": 30,
             "end_hour": 18,
             "end_minute": 59
         },
         {
-            "article_id": 15564,
+            "article_id": 1403,
             "start_hour": 19,
             "start_minute": 0,
             "end_hour": 19,
             "end_minute": 29
         },
         {
-            "article_id": 15564,
+            "article_id": 13896,
             "start_hour": 19,
             "start_minute": 30,
             "end_hour": 19,
-            "end_minute": 59
-        },
-        {
-            "article_id": 15564,
-            "start_hour": 20,
-            "start_minute": 0,
-            "end_hour": 20,
-            "end_minute": 29
-        },
-        {
-            "article_id": 15564,
-            "start_hour": 20,
-            "start_minute": 30,
-            "end_hour": 20,
             "end_minute": 59
         }
     ]
