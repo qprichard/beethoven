@@ -782,6 +782,10 @@ export function setTransaction(sessionId, selectedArticles, badge_id) {
       }
     }
 
+    console.log(article_id);
+    console.log(found);
+    console.log(selectedArticles);
+
     if (found) {
       fetch('https://kraken.picasso-utc.fr/api/perms/count/halloween?article_id=' + article_id, {
         method: 'GET'
